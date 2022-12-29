@@ -11,6 +11,8 @@ app.use(express.urlencoded({extended: true}));
 app.use(helmet());
 app.use(express.static('public'));
 app.use(logger);
+// Template Engine
+app.set('view engine', 'pug');
 
 // Configuration
 console.log(`Application Name: ${config.get('name')}`);
@@ -30,7 +32,7 @@ const courses = [
 
 
 app.get('/', (req, res) => {
-    res.send("Hello World!!!");
+    res.render("index", {title: "My Express App", message: "Hello"});
 });
 
 app.get('/api/courses', (req, res) => {
